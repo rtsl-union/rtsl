@@ -1730,7 +1730,8 @@ render();
 
 // Latest data: an hourly job (GitHub Actions) publishes data.json to the free "data" branch deploy
 // of this Netlify site (data--<site>.netlify.app). The page shows its built-in copy first, then swaps in data.json.
-const DATA_URL=(()=>{const h=location.hostname;return /\.netlify\.app$/i.test(h)&&!/^data--/i.test(h)?`https://data--${h}/data.json`:"data.json";})();
+// data.json lives on the data branch deploy. On a custom domain (e.g. rtsl.twilight-struggle.com) it is read from the fixed Netlify address.
+const DATA_URL=(()=>{const h=location.hostname;if(/^data--/i.test(h))return "data.json";if(/\.netlify\.app$/i.test(h))return `https://data--${h}/data.json`;return "https://data--rtsl.netlify.app/data.json";})();
 (function loadLatest(){
   if(!/^https?:$/.test(location.protocol))return;
   const ctl=typeof AbortController==="function"?new AbortController():null;
