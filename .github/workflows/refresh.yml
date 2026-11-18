@@ -1,6 +1,6 @@
 name: Refresh RTSL data
 
-# Every hour: read the league's Google Sheet and, if anything changed, push the
+# Every 10 minutes: read the league's Google Sheet and, if anything changed, push the
 # new data to the "data" branch. Netlify publishes that branch as a free branch
 # deploy (data--<your-site>.netlify.app); the main site reads data.json from it.
 # Nothing here touches the main branch, so it never triggers a paid production deploy.
